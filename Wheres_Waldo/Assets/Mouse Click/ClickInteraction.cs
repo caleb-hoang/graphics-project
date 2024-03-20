@@ -39,9 +39,6 @@ public class ClickInteraction : MonoBehaviour
                 if (hiddenObject != null)
                 {
                     hiddenObject.onClickAction();
-                } else
-                {
-                    Debug.Log("Clicked on a non-hidden object");
                 }
             }
         }
