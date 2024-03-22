@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class HiddenObjectList : MonoBehaviour
 {
     public List<HiddenObject> hiddenObjectsList = new List<HiddenObject>();
-    public GameObject hiddenObjectPrefab;
+    public GameObject hiddenObjectDisplayItemPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +22,7 @@ public class HiddenObjectList : MonoBehaviour
 
     void ClearHiddenObjectUI()
     {
-        for (int i = 1; i < transform.childCount; i++)
+        for (int i = 0; i < transform.childCount; i++)
         {
             Transform child = transform.GetChild(i);
             Destroy(child.gameObject);
@@ -33,7 +33,7 @@ public class HiddenObjectList : MonoBehaviour
     {
         foreach (HiddenObject hiddenObject in hiddenObjectsList)
         {
-            GameObject hiddenObjectDisplayItem = Instantiate(hiddenObjectPrefab, transform);
+            GameObject hiddenObjectDisplayItem = Instantiate(hiddenObjectDisplayItemPrefab, transform);
             
             Transform imageChild = hiddenObjectDisplayItem.transform.Find("Hidden Object Sprite");
             Transform textChild = hiddenObjectDisplayItem.transform.Find("Hidden Object Name");
