@@ -43,10 +43,9 @@ public class HiddenObject : MonoBehaviour, IHiddenObject
 
     public void Awake()
     {
-        this.objectName = gameObject.name;
-        this.isFound = false;
-
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        this.objectName = spriteRenderer.sprite.name;
+        this.isFound = false;
 
         if (spriteRenderer != null)
         {
