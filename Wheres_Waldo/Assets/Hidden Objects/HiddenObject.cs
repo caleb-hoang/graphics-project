@@ -3,21 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
 public class HiddenObject : MonoBehaviour, IHiddenObject
 {
     public string objectName;
     public Sprite objectSprite;
     private HiddenObjectList hiddenObjectList;
+    public bool isFound;
 
     public void onClickAction()
     {
         if (hiddenObjectList != null)
         {
-            hiddenObjectList.hiddenObjectsList.Remove(this);
+            HiddenObject hiddenObject = hiddenObjectList.FindHiddenObjectByObjectName(objectName);
+
+            hiddenObject.isFound = true;
             hiddenObjectList.UpdateUI();
 
-            if (hiddenObjectList.hiddenObjectsList.Count == 0)
+            if (hiddenObjectList.AreAllHiddenObjectsFound())
             {
                 string currentSceneName = SceneManager.GetActiveScene().name;
 
@@ -42,6 +44,7 @@ public class HiddenObject : MonoBehaviour, IHiddenObject
     public void Awake()
     {
         this.objectName = gameObject.name;
+        this.isFound = false;
 
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
 
